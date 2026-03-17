@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioScope Atlas — Immersive Biology Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="hero">
+    <p class="kicker">Interactive Medical Learning Studio</p>
+    <h1>BioScope Atlas</h1>
+    <p class="subtitle">A cinematic biology explorer blending museum-grade visuals and active learning.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel visual-stage" aria-label="Biology visual explorer">
+      <div class="topic-switch" role="tablist" aria-label="Choose biology topic">
+        <button class="topic-btn active" data-topic="cell" role="tab" aria-selected="true">Cell</button>
+        <button class="topic-btn" data-topic="heart" role="tab" aria-selected="false">Heart</button>
+        <button class="topic-btn" data-topic="dna" role="tab" aria-selected="false">DNA</button>
+        <button class="topic-btn" data-topic="neuron" role="tab" aria-selected="false">Neuron</button>
+        <button class="topic-btn" data-topic="ecosystem" role="tab" aria-selected="false">Ecosystem</button>
+      </div>
+
+      <div class="svg-wrap" id="svgMount">
+        <!-- Embedded SVGs with ontology IDs and cleanupIds:false requirement retained in data attrs -->
+        <svg id="topic-cell" class="topic-svg active" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" aria-label="Animal cell diagram" data-cleanup-ids="false">
+          <defs>
+            <radialGradient id="cellCytoplasm"><stop offset="0%" stop-color="#f4d9c6"/><stop offset="100%" stop-color="#e4bfa7"/></radialGradient>
+          </defs>
+          <ellipse id="cell-membrane" data-ontology-id="GO:0016020" cx="260" cy="170" rx="220" ry="140" fill="url(#cellCytoplasm)" stroke="#6d3d2f" stroke-width="4"/>
+          <ellipse id="cell-nucleus" data-ontology-id="GO:0005634" cx="275" cy="175" rx="72" ry="56" fill="#cf8e7b" stroke="#5a2a20" stroke-width="3"/>
+          <circle id="cell-nucleolus" data-ontology-id="GO:0005730" cx="278" cy="176" r="18" fill="#8f4d40" stroke="#5a2a20" stroke-width="2"/>
+          <g id="cell-mitochondria" data-ontology-id="GO:0005739" class="pulse-group">
+            <ellipse cx="165" cy="110" rx="30" ry="16" fill="#e2a55f" stroke="#7d4f1f" stroke-width="2"/>
+            <path d="M145 110 C155 100,175 120,185 108" stroke="#7d4f1f" stroke-width="2" fill="none"/>
+            <ellipse cx="355" cy="132" rx="30" ry="16" fill="#e2a55f" stroke="#7d4f1f" stroke-width="2"/>
+            <path d="M335 132 C345 122,365 142,375 130" stroke="#7d4f1f" stroke-width="2" fill="none"/>
+          </g>
+          <text x="58" y="50" class="svg-label">Mitochondria ≈ battery</text>
+        </svg>
+
+        <svg id="topic-heart" class="topic-svg" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" aria-label="Human heart diagram" data-cleanup-ids="false">
+          <path id="heart-myocardium" data-ontology-id="UBERON:0001133" d="M262 298 C108 220 112 72 226 70 C256 72 273 92 282 108 C292 92 309 72 339 70 C451 72 454 220 300 298 L282 314 Z" fill="#c46762" stroke="#612422" stroke-width="4"/>
+          <path id="heart-left-ventricle" data-ontology-id="UBERON:0002084" d="M246 152 C206 188 204 240 250 282" fill="none" stroke="#3f1312" stroke-width="3"/>
+          <path id="heart-right-ventricle" data-ontology-id="UBERON:0002080" d="M286 132 C334 166 338 226 298 280" fill="none" stroke="#3f1312" stroke-width="3"/>
+          <path id="blood-flow-arrow-1" class="flow-arrow" d="M237 130 l-9 13 h8 v18 h3 v-18 h8z" fill="#f3ddd4" stroke="#6d3c2f"/>
+          <path id="blood-flow-arrow-2" class="flow-arrow" d="M296 118 l-9 13 h8 v18 h3 v-18 h8z" fill="#f3ddd4" stroke="#6d3c2f"/>
+          <text x="40" y="42" class="svg-label">Animated blood flow vectors</text>
+        </svg>
+
+        <svg id="topic-dna" class="topic-svg" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" aria-label="DNA double helix" data-cleanup-ids="false">
+          <path id="dna-backbone-a" data-ontology-id="SO:0000352" d="M140 30 C230 80 290 130 380 180 C290 230 230 280 140 320" fill="none" stroke="#925c8a" stroke-width="7"/>
+          <path id="dna-backbone-b" data-ontology-id="SO:0000352" d="M380 30 C290 80 230 130 140 180 C230 230 290 280 380 320" fill="none" stroke="#4f7e8f" stroke-width="7"/>
+          <g id="dna-rungs" data-ontology-id="SO:0000348">
+            <line x1="188" y1="63" x2="332" y2="63" stroke="#f6eadf" stroke-width="4"/>
+            <line x1="223" y1="110" x2="298" y2="110" stroke="#f6eadf" stroke-width="4"/>
+            <line x1="232" y1="170" x2="286" y2="170" stroke="#f6eadf" stroke-width="4"/>
+            <line x1="223" y1="230" x2="298" y2="230" stroke="#f6eadf" stroke-width="4"/>
+            <line x1="188" y1="275" x2="332" y2="275" stroke="#f6eadf" stroke-width="4"/>
+          </g>
+          <text x="48" y="42" class="svg-label">Transcription to translation timeline below</text>
+        </svg>
+
+        <svg id="topic-neuron" class="topic-svg" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" aria-label="Neuron pathway" data-cleanup-ids="false">
+          <circle id="neuron-soma" data-ontology-id="GO:0043025" cx="100" cy="170" r="52" fill="#d5a67f" stroke="#66422f" stroke-width="3"/>
+          <path id="neuron-axon" data-ontology-id="UBERON:0001021" d="M150 170 C230 130 280 210 380 170" fill="none" stroke="#e9d4be" stroke-width="9"/>
+          <g id="synapse-path" data-ontology-id="GO:0045202">
+            <circle class="spark" cx="210" cy="154" r="6" fill="#f8e08f" stroke="#8a6b1e"/>
+            <circle class="spark" cx="270" cy="184" r="6" fill="#f8e08f" stroke="#8a6b1e"/>
+            <circle class="spark" cx="325" cy="166" r="6" fill="#f8e08f" stroke="#8a6b1e"/>
+          </g>
+          <text x="24" y="46" class="svg-label">Circuit-style signaling with synapse sparks</text>
+        </svg>
+
+        <svg id="topic-ecosystem" class="topic-svg" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" aria-label="Ecosystem food chain map" data-cleanup-ids="false">
+          <circle cx="88" cy="88" r="36" fill="#f3ca7f" stroke="#73511b" stroke-width="3" data-ontology-id="ENVO:01000254"/>
+          <rect x="52" y="228" width="410" height="70" fill="#7a965f" stroke="#3f5930" stroke-width="3" data-ontology-id="ENVO:01001110"/>
+          <circle cx="130" cy="220" r="18" fill="#e5dcb8" stroke="#665233" stroke-width="2" data-ontology-id="NCBITaxon:2"/>
+          <ellipse cx="240" cy="208" rx="24" ry="15" fill="#dcc485" stroke="#6e4b1f" stroke-width="2" data-ontology-id="NCBITaxon:131567"/>
+          <ellipse cx="335" cy="196" rx="30" ry="20" fill="#a77e58" stroke="#5f3a1f" stroke-width="2" data-ontology-id="NCBITaxon:40674"/>
+          <path class="chain-arrow" d="M148 220 C172 220 190 214 210 210" />
+          <path class="chain-arrow" d="M264 208 C286 204 296 201 306 198" />
+          <text x="36" y="42" class="svg-label">Food chain animation: producer → consumer → predator</text>
+        </svg>
+      </div>
+
+      <div class="timeline card">
+        <label for="bioTimeline">Molecular Timeline</label>
+        <input id="bioTimeline" type="range" min="0" max="2" step="1" value="0" />
+        <p id="timelineReadout" class="mono">Step 1: DNA transcription begins in nucleus.</p>
+      </div>
+    </section>
+
+    <section class="panel content-stage">
+      <div class="tabs" role="tablist" aria-label="Learning depth tabs">
+        <button class="tab-btn active" data-tab="basics">Basics</button>
+        <button class="tab-btn" data-tab="functions">Functions</button>
+        <button class="tab-btn" data-tab="disorders">Disorders</button>
+        <button class="tab-btn" data-tab="applications">Applications</button>
+      </div>
+
+      <article class="tab-panel active" id="basics">
+        <h2>Layer 1 · Definition</h2>
+        <p id="topicDefinition">Cells are the fundamental units of life, bounded by membranes and orchestrated by organelles.</p>
+      </article>
+      <article class="tab-panel" id="functions">
+        <h2>Layer 2 · Function</h2>
+        <p id="topicFunction">Mitochondria convert nutrient gradients into ATP energy, the cell's rechargeable battery output.</p>
+      </article>
+      <article class="tab-panel" id="disorders">
+        <h2>Layer 3 · Disorders</h2>
+        <p id="topicDisorder">Mitochondrial dysfunction can impair high-demand tissues, contributing to myopathies and neurodegeneration.</p>
+      </article>
+      <article class="tab-panel" id="applications">
+        <h2>Layer 4 · Real-World Impact</h2>
+        <p id="topicApplication">Targeted therapeutics and metabolic diagnostics now use cellular bioenergetics as measurable biomarkers.</p>
+      </article>
+
+      <div class="card actions">
+        <button id="quizBtn">Challenge Mode</button>
+        <button id="flashcardBtn">Flashcard Mode</button>
+      </div>
+
+      <div id="flashcard" class="flashcard hidden" aria-live="polite">
+        <h3>Flashcard</h3>
+        <p id="flashcardPrompt">What organelle is best described as the cell's battery?</p>
+        <button id="flipFlashcard">Flip</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="quizDialog">
+    <h3>Challenge Mode Quiz</h3>
+    <p id="quizQuestion">Which ontology-linked structure primarily produces ATP?</p>
+    <div class="quiz-options">
+      <button data-answer="wrong">Golgi apparatus</button>
+      <button data-answer="correct">Mitochondrion</button>
+      <button data-answer="wrong">Lysosome</button>
+    </div>
+    <p id="quizResult" class="mono"></p>
+    <button id="closeQuiz">Close</button>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
